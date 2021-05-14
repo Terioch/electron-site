@@ -11,10 +11,5 @@ module.exports = {
 	variants: {
 		extend: {},
 	},
-	plugins: [
-		require("tailwindcss-elevation")(["responsive"], {
-			color: "#fff",
-			opacityBoost: "0.4",
-		}),
-	],
+	plugins: [require("tailwindcss-elevation")(["responsive"])],
 };

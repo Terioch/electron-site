@@ -6,8 +6,8 @@ sell their next-generation products. Currently a work in progress...
 
 ## General Information
 
-This website is built in Next.js and Typescript with Wordpress, Shopify
-GraphQL, Firebase and Redux.
+This website is built in Next.js and Typescript with Wordpress, GraphQL,
+Firebase and Redux.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

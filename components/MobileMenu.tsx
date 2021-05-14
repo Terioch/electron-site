@@ -25,7 +25,7 @@ const MobileMenu: React.FC<Props> = ({}) => {
 			{menuOpen && (
 				<>
 					<Overlay />
-					<div className="z-20 elevation-2 bg-gray-50 w-40 sm:w-60 p-4 absolute left-0 top-12 bottom-0">
+					<div className="z-20 elevation-3 bg-gray-50 w-40 sm:w-60 p-4 absolute left-0 top-12 bottom-0">
 						<SvgIcon
 							className="cursor-pointer mb-6"
 							height="20"
