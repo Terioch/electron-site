@@ -11,7 +11,9 @@ const Nav: React.FC<Props> = () => {
 		<nav className="flex flex-col elevation-3">
 			<section className="flex justify-between bg-black bg-opacity-80 text-gray-100 py-3 px-4 md:px-12">
 				<div>
-					<p>(415) 712-8205</p>
+					<p className="uppercase cursor-pointer hover:text-gray-200">
+						Sign in
+					</p>
 				</div>
 				<div>Social Media</div>
 			</section>
