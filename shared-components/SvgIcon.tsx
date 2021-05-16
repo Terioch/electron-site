@@ -20,7 +20,7 @@ const SvgIcon: React.FC<Props> = ({
 			width={width || "25"}
 			height={height || "25"}
 			fill="currentColor"
-			className={className}
+			className={`cursor-pointer ${className}`}
 			viewBox="0 0 16 16"
 			onClick={onClick}
 		>

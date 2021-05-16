@@ -5,18 +5,15 @@ import SharedComponents from "../shared-components/SharedComponents";
 interface Props {}
 
 const MobileMenu: React.FC<Props> = ({}) => {
-	const { Overlay } = Components;
-	const { SvgIcon } = SharedComponents;
+	const {} = Components;
+	const { SvgIcon, Overlay } = SharedComponents;
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const handleMenuToggle = () => setMenuOpen(!menuOpen);
 
 	return (
 		<>
-			<SvgIcon
-				className="cursor-pointer"
-				onClick={() => handleMenuToggle()}
-			>
+			<SvgIcon onClick={() => handleMenuToggle()}>
 				<path
 					fillRule="evenodd"
 					d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
@@ -27,7 +24,7 @@ const MobileMenu: React.FC<Props> = ({}) => {
 					<Overlay />
 					<div className="z-20 elevation-3 bg-gray-50 w-40 sm:w-60 p-4 absolute left-0 top-12 bottom-0">
 						<SvgIcon
-							className="cursor-pointer mb-6"
+							className="mb-6"
 							height="20"
 							width="20"
 							onClick={() => handleMenuToggle()}
