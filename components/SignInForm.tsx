@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import firebaseClient from "../firebase/config";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
 import { authProviders } from "../auth/authProviders";
@@ -10,8 +10,22 @@ interface Props {
 const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 	const { SignInFormBox } = Components;
 	const { Modal, SvgIcon } = SharedComponents;
+	firebaseClient();
 
-	const handleAuth = (e: any) => {
+	// Handle various sign-in methods
+	const handleAuth = (name: string) => {
+		
+	}
+
+	const handleGoogleAuth = () => {
+
+	}
+
+	const handleGithubAuth = () => {
+
+	}
+
+	const handleFacebookAuth = () => {
 
 	}
 

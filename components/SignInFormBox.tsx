@@ -5,7 +5,7 @@ interface Props {
 	name: string;
 	logoPath: string;
 	background: string;
-	handleAuth: (e: any) => void;
+	handleAuth: (name: string) => void;
 }
 
 const SignInFormBox: React.FC<Props> = ({
@@ -19,7 +19,7 @@ const SignInFormBox: React.FC<Props> = ({
 	return (
 		<div
 			className={`flex my-1 rounded p-3 w-60 cursor-pointer ${background}`}
-			onClick={handleAuth}
+			onClick={() => handleAuth(name)}
 		>
 			<SvgIcon className="text-white">
 				<path d={logoPath} />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from "next/router";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
 
@@ -10,8 +11,10 @@ const Nav: React.FC<Props> = () => {
 	const { MobileMenu, DesktopMenu, SignInForm } = Components;
 	const { SvgIcon } = SharedComponents;
 	const [displayForm, setDisplayForm] = useState(false);
+	const router = useRouter();
 
-	const handleFormDisplay = () => setDisplayForm(!displayForm);
+	const handleRouter = (url: string) => router.push(url);
+	const handleFormDisplay = () => setDisplayForm(!displayForm);	
 
 	return (
 		<nav className="flex flex-col elevation-3">
@@ -41,19 +44,17 @@ const Nav: React.FC<Props> = () => {
 					<DesktopMenu />
 				</div>
 				<div className="cursor-pointer relative md:right-12">
-					<Link href="/">
-						<Image
-							src="/images/electron-logo.png"
-							height={40}
-							width={45}
-						/>
-					</Link>
+					<Image
+						src="/images/electron-logo.png"
+						height={40}
+						width={45}
+						onClick={() => handleRouter("/")}
+					/>
 				</div>
-				<Link href="/shop">
-					<button className="border rounded-lg bg-btnPrimary py-2 px-4 text-gray-50">
-						Shop
-					</button>
-				</Link>
+				<button className="border rounded-lg bg-btnPrimary py-2 px-4 text-gray-50"
+				onClick={() => handleRouter("/shop")}>
+					Shop
+				</button>
 			</section>
 			{displayForm && <SignInForm handleFormDisplay={handleFormDisplay} />}
 		</nav>
