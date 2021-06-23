@@ -1,6 +1,9 @@
+import firebase from "firebase/app";
+import "firebase/auth";
 import firebaseClient from "../firebase/config";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
+import { useAuth } from "../auth/auth";
 import { authProviders } from "../auth/authProviders";
 
 interface Props {
@@ -10,24 +13,35 @@ interface Props {
 const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 	const { SignInFormBox } = Components;
 	const { Modal, SvgIcon } = SharedComponents;
+	const { user } = useAuth();
 	firebaseClient();
 
+	console.log(user);
+
 	// Handle various sign-in methods
-	const handleAuth = (name: string) => {
-		
-	}
+	const handleAuth = async (name: string) => {
+		let provider = null;
 
-	const handleGoogleAuth = () => {
+		switch (true) {
+			case name === "Google":
+				provider = new firebase.auth.GoogleAuthProvider();
+				break;
+			case name === "Github":
+				provider = new firebase.auth.GithubAuthProvider();
+				break;
+			case name === "Facebook":
+				provider = new firebase.auth.FacebookAuthProvider();
+		}
 
-	}
-
-	const handleGithubAuth = () => {
-
-	}
-
-	const handleFacebookAuth = () => {
-
-	}
+		const auth = firebase.auth().signInWithPopup(provider);
+		await auth
+			.then(user => {
+				localStorage.setItem("user", JSON.stringify(user));
+			})
+			.catch(err => {
+				console.error(err.message);
+			});
+	};
 
 	return (
 		<Modal>
@@ -47,6 +61,7 @@ const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 			<section className="flex flex-col">
 				{authProviders.map(provider => (
 					<SignInFormBox
+						key={provider.name}
 						name={provider.name}
 						logoPath={provider.logoPath}
 						background={provider.background}
