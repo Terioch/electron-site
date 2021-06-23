@@ -1,13 +1,13 @@
 import firebase from "firebase/app";
 
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBmgQbUC5QbWLOcrwJ088DsOpZ4wkMCrvY",
-  authDomain: "electron-site-59e52.firebaseapp.com",
-  projectId: "electron-site-59e52",
-  storageBucket: "electron-site-59e52.appspot.com",
-  messagingSenderId: "757979216265",
-  appId: "1:757979216265:web:4bbc3ed973b83fd0de0958",
-  measurementId: "G-0TFRTJJ7EZ"
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID
 }
 
 function firebaseClient() {
