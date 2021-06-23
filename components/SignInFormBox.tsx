@@ -5,18 +5,21 @@ interface Props {
 	name: string;
 	logoPath: string;
 	background: string;
+	handleAuth: (e: any) => void;
 }
 
 const SignInFormBox: React.FC<Props> = ({
 	name,
 	logoPath,
 	background,
+	handleAuth,
 }) => {
 	const { SvgIcon } = SharedComponents;
 
 	return (
 		<div
 			className={`flex my-1 rounded p-3 w-60 cursor-pointer ${background}`}
+			onClick={handleAuth}
 		>
 			<SvgIcon className="text-white">
 				<path d={logoPath} />

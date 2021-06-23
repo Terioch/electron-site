@@ -1,4 +1,4 @@
-import {} from "react";
+import { MouseEventHandler } from "react";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
 import { authProviders } from "../auth/authProviders";
@@ -10,6 +10,10 @@ interface Props {
 const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 	const { SignInFormBox } = Components;
 	const { Modal, SvgIcon } = SharedComponents;
+
+	const handleAuth = (e: any) => {
+
+	}
 
 	return (
 		<Modal>
@@ -32,6 +36,7 @@ const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 						name={provider.name}
 						logoPath={provider.logoPath}
 						background={provider.background}
+						handleAuth={handleAuth}
 					/>
 				))}
 			</section>
