@@ -1,5 +1,4 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase";
 import firebaseClient from "../firebase/config";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
@@ -16,31 +15,23 @@ const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 	const { user } = useAuth();
 	firebaseClient();
 
-	console.log(user);
-
 	// Handle various sign-in methods
 	const handleAuth = async (name: string) => {
-		let provider = null;
+		let auth = null;
 
-		switch (true) {
-			case name === "Google":
-				provider = new firebase.auth.GoogleAuthProvider();
-				break;
-			case name === "Github":
-				provider = new firebase.auth.GithubAuthProvider();
-				break;
-			case name === "Facebook":
-				provider = new firebase.auth.FacebookAuthProvider();
-				break;
-		}
+		// Iterate and sign-in with correct provider
+		authProviders.forEach(provider => {
+			if (provider.name === name) {
+				auth = firebase.auth().signInWithPopup(provider.auth);
+			}
+		});
 
-		const auth = firebase.auth().signInWithPopup(provider);
 		await auth
 			.then(user => {
 				localStorage.setItem("user", JSON.stringify(user));
 				window.location.href = "/";
 			})
-			.catch(err => {
+			.catch((err: Error) => {
 				console.error(err.message);
 			});
 	};
