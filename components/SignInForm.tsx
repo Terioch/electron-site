@@ -31,12 +31,14 @@ const SignInForm: React.FC<Props> = ({ handleFormDisplay }) => {
 				break;
 			case name === "Facebook":
 				provider = new firebase.auth.FacebookAuthProvider();
+				break;
 		}
 
 		const auth = firebase.auth().signInWithPopup(provider);
 		await auth
 			.then(user => {
 				localStorage.setItem("user", JSON.stringify(user));
+				window.location.href = "/";
 			})
 			.catch(err => {
 				console.error(err.message);

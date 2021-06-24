@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import Components from "./Components";
 import SharedComponents from "../shared-components/SharedComponents";
+import { useAuth } from "../auth/auth";
+import { handleSignOut } from "../auth/signOut";
 
 interface Props {}
 
@@ -12,16 +13,17 @@ const Nav: React.FC<Props> = () => {
 	const { SvgIcon } = SharedComponents;
 	const [displayForm, setDisplayForm] = useState(false);
 	const router = useRouter();
+	const { user } = useAuth();
 
 	const handleRouter = (url: string) => router.push(url);
-	const handleFormDisplay = () => setDisplayForm(!displayForm);	
+	const handleFormDisplay = () => setDisplayForm(!displayForm);
 
 	return (
 		<nav className="flex flex-col elevation-3">
 			<section className="flex justify-between bg-black bg-opacity-80 text-gray-100 py-3 px-4 md:px-12">
-				<div onClick={handleFormDisplay}>
+				<div onClick={user ? handleSignOut : handleFormDisplay}>
 					<p className="uppercase cursor-pointer hover:text-gray-200">
-						Sign in
+						{user ? "Sign Out" : "Sign in"}
 					</p>
 				</div>
 				<div className="flex items-center space-x-3">
@@ -51,8 +53,10 @@ const Nav: React.FC<Props> = () => {
 						onClick={() => handleRouter("/")}
 					/>
 				</div>
-				<button className="border rounded-lg bg-btnPrimary py-2 px-4 text-gray-50"
-				onClick={() => handleRouter("/shop")}>
+				<button
+					className="border rounded-lg bg-btnPrimary py-2 px-4 text-gray-50"
+					onClick={() => handleRouter("/shop")}
+				>
 					Shop
 				</button>
 			</section>

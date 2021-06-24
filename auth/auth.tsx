@@ -4,7 +4,6 @@ import React, {
 	useContext,
 	createContext,
 } from "react";
-import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseClient from "../firebase/config";
 
